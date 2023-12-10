@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./Header.css"
 import SearchIcon from "@material-ui/icons/Search"
 import {Avatar} from "@material-ui/core"
 import {useDataLayerValue} from '../DataLayer'
 import Axios from 'axios'
+// * as client from "./client";
 
 
 function Header() {
     const [{user}, dispatch] = useDataLayerValue();
+
+    // //findUserById SEARCH
+    // const [user, setUser] = useState(null);
+    // const fetchUser = async () => {
+    //     const user = await client.findUserById(id);
+    //     setUser(user);
+    // };
+    
     const doSearch = (elem) => {
         console.log("searching")
         if(elem.key === "Enter") {
@@ -32,6 +41,7 @@ function Header() {
 
         }
     }
+
     const updateAccount = () => {
         dispatch({type: "SET_PAGE", page: 'Account'})
         // select statements to populate reviews array

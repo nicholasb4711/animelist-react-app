@@ -19,9 +19,9 @@ function Loading(){
       if(elem.key === "Enter") {
         const password = elem.target.value;
         const username = document.getElementById("email").value;
-        if(username != null && password != null){
-          if(username.indexOf("@gmail.com") != -1 || username.indexOf("@yahoo.com") != -1 
-          || username.indexOf("@hotmail.com") != -1 ||  username.indexOf("@outlook.com") != -1){
+        if(username !== null && password !== null){
+          if(username.indexOf("@gmail.com") !== -1 || username.indexOf("@yahoo.com") !== -1 
+          || username.indexOf("@hotmail.com") !== -1 ||  username.indexOf("@outlook.com") !== -1){
             //check three cases:
             //case 1: email is not in database - add email and password to database
             //case 2: email is in database and password is the correct Password in database
@@ -51,9 +51,9 @@ function Loading(){
         })
         const password = elem.target.value;
         const username = document.getElementById("emailLog").value;
-        if(username != null && password != null){
-          if(username.indexOf("@gmail.com") != -1 || username.indexOf("@yahoo.com") != -1 
-          || username.indexOf("@hotmail.com") != -1 ||  username.indexOf("@outlook.com") != -1){
+        if(username !== null && password !== null){
+          if(username.indexOf("@gmail.com") !== -1 || username.indexOf("@yahoo.com") !== -1 
+          || username.indexOf("@hotmail.com") !== -1 ||  username.indexOf("@outlook.com") !== -1){
             //check three cases:
             //case 1: email is not in database - add email and password to database
             //case 2: email is in database and password is the correct Password in database
