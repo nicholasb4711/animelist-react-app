@@ -1,0 +1,40 @@
+.loading {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background-color: #0d1117;
+}
+
+.login-bubble {
+    background-color: #484f58;
+    width: 28rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    border-style: solid;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 3rem;
+    border-color: #4b0082;
+    justify-content: center;
+}
+
+.login-form {
+    width: 22rem;
+}
+
+.btn-primary {
+    background-color: #4b0082;
+    --bs-btn-hover-bg: #;
+    --bs-btn-hover-border-color: #6f03bd;
+    --bs-btn-border-color: #4b0082;
+}
+
+.login-checkbox {
+    background-color: white;
+    border-color: #a86ed1;
+}
+.login-checkbox:checked {
+    background-color: #a86ed1;
+    border-color: #a86ed1;
+}
