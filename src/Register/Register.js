@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Loading.css'
 
 
-function Loading() {
+function Register() {
   const [{ user, password }, dispatch] = useDataLayerValue();
   const top50 = () => {
     Axios.post("http://localhost:3001/top50", {})
@@ -123,41 +123,42 @@ function Loading() {
 
           {/* <!-- 2 column grid layout for inline styling --> */}
           <div className="row mb-4">
-            <div className="col d-flex justify-content-center">
-              {/* <!-- Checkbox --> */}
-              <div className="form-check">
-                <input className="form-check-input login-checkbox" type="checkbox" value="" id="form2Example31" />
-                <label className="form-check-label" htmlFor="rememberme"> Remember me </label>
-              </div>
-            </div>
+            <div className="col d-flex-column justify-content-center">
+              {/* <!-- Submit button --> */}
 
-            <div className="col">
-              {/* <!-- Simple link --> */}
-              <a href="#!" style={{ color: '#a86ed1' }}>Forgot password?</a>
+              <button type="button" className="btn btn-primary btn-md btn-block mb-4" onClick={() => open()}>Register</button>
             </div>
           </div>
-
-          {/* <!-- Submit button --> */}
-          <button type="button" className="btn btn-primary btn-md btn-block mb-4" onClick={() => open()}>Sign in</button>
-
-          {/* <!-- Register buttons --> */}
-
-          <div className="text-center">
-            <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
-          </div>
-
-
-          {/* Continue without logging in */}
-          <Link to={"/home"}><button class="btn"
-            style={{ padding: 20, borderRadius: 99, backgroundColor: '#4B0082', fontWeight: 800, color: 'white', textDecoration: 'none' }}
-          >Continue without Logging in </button>
-          </Link>
-
         </form>
       </div >
     </div >
+    // <div className="loading">
+    //   {/* Register */}
+    //   <h1 style={{ color: 'white' }}>Register</h1>
+    //   <input class="input-group-text" id="email" type="email" placeholder="Email"></input>
+    //   <input class="input-group-text" type="password" placeholder="Password" onKeyDown={(e) => register(e)}></input>
+    //   <button class="btn"
+    //     onClick={() => open()}
+    //     style={{ padding: 20, borderRadius: 99, backgroundColor: '#4B0082', fontWeight: 800, color: 'white', textDecoration: 'none' }}
+    //   >Register </button>
+
+    //   {/* Login */}
+    //   <h1 style={{ color: 'white' }}>Login</h1>
+    //   <input class="input-group-text" id="emailLog" type="email" placeholder="Email"></input>
+    //   <input class="input-group-text" type="password" placeholder="Password" onKeyDown={(e) => login(e)}></input>
+    //   <button class="btn"
+    //     onClick={() => open()}
+    //     style={{ padding: 20, borderRadius: 99, backgroundColor: '#4B0082', fontWeight: 800, color: 'white', textDecoration: 'none' }}
+    //   >Continue without Logging in </button>
+
+    //   {/* Continue without logging in */}
+    //   <button class="btn"
+    //     onClick={() => open()}
+    //     style={{ padding: 20, borderRadius: 99, backgroundColor: '#4B0082', fontWeight: 800, color: 'white', textDecoration: 'none' }}
+    //   >Continue without Logging in </button>
+    // </div>
   )
 }
 
 
-export default Loading;
+export default Register;
