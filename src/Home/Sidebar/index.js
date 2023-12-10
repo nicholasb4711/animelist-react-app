@@ -25,9 +25,7 @@ function Sidebar() {
         <SidebarOption Icon = {HomeIcon} title = "Home" />
       </div>
       <div>
-        <Link to={`/Search/`}>
-        <SidebarOption Icon = {SearchIcon} title = "Search" />
-        </Link>
+        
       </div>
       <div onClick={() => dispatch({type: "SET_PAGE", page: 'Search'})}>
         <SidebarOption Icon = {SearchIcon} title = "Search" />
