@@ -3,6 +3,7 @@ import "./Header.css"
 import SearchIcon from "@material-ui/icons/Search"
 import {Avatar} from "@material-ui/core"
 import {useDataLayerValue} from '../DataLayer'
+import { Link } from 'react-router-dom'
 import Axios from 'axios'
 // * as client from "./client";
 
@@ -58,11 +59,18 @@ function Header() {
                     onKeyDown={(e)=> doSearch(e)}
                 />
             </div>
-            <div className="header_right" >
+            <div className="header_right">
                 <h4 style={{marginRight:"10px"}}>{user + " "}</h4>
+                <Link to={"/account"}>
                 <Avatar onClick={() => updateAccount()}> 
                 {user.charAt(0)}
-                </ Avatar>
+                </Avatar>
+                </Link>
+                <Link to={"/"}>
+                <h5 style={{paddingLeft: "10px"}}>
+                    Log out
+                </h5>
+                </Link>
             </div>
         </div>
     )
