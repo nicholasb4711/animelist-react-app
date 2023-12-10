@@ -3,6 +3,7 @@ import * as client from "./client";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../Home/Body/Body.css';
+// import {useDispatch} from "react-redux";
 import Header from '../Search/Search'; // Assuming you have a Header component
 import {Avatar} from "@material-ui/core" // Assuming you have an Avatar component
 import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
@@ -12,6 +13,7 @@ import Axios from 'axios'
 function Account() {
   const [account, setAccount] = useState(null);
   const navigate = useNavigate();
+  
   const fetchAccount = async () => {
     const account = await client.account();
     setAccount(account);
