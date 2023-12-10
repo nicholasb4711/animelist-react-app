@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Routes, Route, Link } from "react-router-dom";
-import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
 import './index.css';
 import App from './App';
