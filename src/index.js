@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
 import { useState } from "react";
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { DataLayer } from './DataLayer';
 import reducer, { initialState } from './reducer';
+import './index.css';
+import App from './App';
 import UserList from "./users/list";
 
 
