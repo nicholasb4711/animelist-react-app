@@ -2,6 +2,7 @@ import React, { Component, useEffect} from 'react'
 import './Loading.css'
 import {useDataLayerValue} from '../DataLayer'
 import Axios from 'axios'
+import bootstrap from 'bootstrap'
 
 function Loading(){
     const [{user, password}, dispatch] = useDataLayerValue();
