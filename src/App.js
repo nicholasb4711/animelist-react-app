@@ -5,10 +5,10 @@ import { HashRouter } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Searchcomp from './Search/Searchcomp';
 import Homecomp from './Home/Homecomp.js';
-import Accountcomp from './Account/Accountcomp';
+import Accountcomp from './users/Accountcomp.js';
 import Register from './Register/Register.js';
 import Signin from "./users/signin.js"
-import Account from "./Account/Account.js";
+import Account from "./users/Account.js";
 
 
 function App() {
