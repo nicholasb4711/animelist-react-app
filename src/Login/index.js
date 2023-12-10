@@ -143,14 +143,13 @@ function Loading() {
           {/* <!-- Register buttons --> */}
 
           <div className="text-center">
-            <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
+            <p>Not a member? <Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
           </div>
 
 
           {/* Continue without logging in */}
-          <Link to={"/home"}><button class="btn"
-            style={{ padding: 20, borderRadius: 99, backgroundColor: '#4B0082', fontWeight: 800, color: 'white', textDecoration: 'none' }}
-          >Continue without Logging in </button>
+          <Link to={"/home"}>
+            <button class="btn btn-primary btn-block mt-2">Continue without Logging in</button>
           </Link>
 
         </form>
