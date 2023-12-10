@@ -1,5 +1,5 @@
 import React from 'react';
-import * as client from "../users/client";
+import * as client from "./client";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../Home/Body/Body.css';
