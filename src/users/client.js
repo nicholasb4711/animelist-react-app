@@ -7,3 +7,8 @@ export const findAllUsers = async () => {
     const response = await axios.get(USERS_API);
     return response.data;
 }
+
+export const findUserById = async (id) => {
+    const response = await axios.get(`${USERS_API}/${id}`);
+    return response.data;
+}
