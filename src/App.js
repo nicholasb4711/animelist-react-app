@@ -7,6 +7,8 @@ import Searchcomp from './Search/Searchcomp';
 import Homecomp from './Home/Homecomp.js';
 import Accountcomp from './Account/Accountcomp';
 import Register from './Register/Register.js';
+import Signin from "./users/signin.js"
+import Account from "./Account/Account.js";
 
 
 function App() {
@@ -15,7 +17,9 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
+          <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/" element={<Loading />} />
           <Route path="/Search" element={<Searchcomp />} />
           <Route path="/home" element={<Homecomp />} />
