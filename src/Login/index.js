@@ -144,10 +144,14 @@ function Loading() {
           <div className="text-center">
             <p>Not a member? <a href="#!" style={{ color: '#a86ed1' }}>Register</a></p>
           </div>
+          {/* Continue without logging in */}
+          <button class="btn"
+            onClick={() => open()}
+            style={{ padding: 20, borderRadius: 99, backgroundColor: '#4B0082', fontWeight: 800, color: 'white', textDecoration: 'none' }}
+          >Continue without Logging in </button>
         </form>
-        
-      </div>
-    </div>
+      </div >
+    </div >
     // <div className="loading">
     //   {/* Register */}
     //   <h1 style={{ color: 'white' }}>Register</h1>
