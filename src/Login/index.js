@@ -67,7 +67,7 @@ function Loading() {
                     </Link>
                 </section>
             ) : (
-            <div className="login-bubble d-flex-column loading" data-bs-theme="dark">
+            <div className="login-bubble d-flex-column" data-bs-theme="dark">
             <form className="login-form" >
               {/* <!-- Email input --> */}
               <div className="form-outline mb-4">

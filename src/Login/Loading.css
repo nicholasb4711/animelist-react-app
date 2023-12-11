@@ -7,16 +7,16 @@
 
 .login-bubble {
     background-color: #484f58;
-    width: 28rem;
-    padding: 2rem;
-    border-radius: 1rem;
-    border-style: solid;
-    border-top-width: 0;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 3rem;
-    border-color: #4b0082;
-    justify-content: center;
+    width: 28rem !important;
+    padding: 2rem !important;
+    border-radius: 1rem !important;
+    border-style: solid !important;
+    border-top-width: 0 !important;
+    border-left-width: 0 !important;
+    border-right-width: 0 !important;
+    border-bottom-width: 3rem !important;
+    border-color: #4b0082 !important;
+    justify-content: center !important;
 }
 
 .login-form {
