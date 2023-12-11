@@ -27,6 +27,8 @@
 }
 
 .animeRow_album {
-    height: 40px;
-    width: 40px;
+    width: 200px; /* Increased size */
+    height: 200px; /* Increased size */
+    object-fit: cover;
+    margin-bottom: 20px;
 }
