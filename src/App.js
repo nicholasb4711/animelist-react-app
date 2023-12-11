@@ -9,6 +9,7 @@ import Accountcomp from './users/Accountcomp.js';
 import Register from './Register/Register.js';
 import Signin from "./users/signin.js"
 import UserList from "./users/UserList.js"
+import UserDetails from './users/Details.js';
 import Account from "./users/Account.js";
 
 
@@ -25,7 +26,8 @@ function App() {
           <Route path="/home" element={<Homecomp />} />
           <Route path="/account" element={<Accountcomp />} />
           <Route path="/users" element={<UserList />} />
-          <Route path="/users/:id" element={<Account />} />
+          <Route path="/users/:id" element={<UserDetails />} />
+          <Route path="/users/:username" element={<Account />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
