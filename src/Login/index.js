@@ -146,6 +146,11 @@ function Loading() {
           <div className="text-center">
             <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
           </div>
+          {/* Continue without logging in */}
+          <Link to={"/home"}>
+            <button class="btn btn-primary btn-block mt-2">Continue without Logging in</button>
+          </Link>
+
         </form>
       </div >
     </div >
