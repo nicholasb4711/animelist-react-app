@@ -17,7 +17,7 @@ function UserList() {
         <div className="list-group">
             {users.map((user) => (
                 <Link key={user._id}
-                    to={`/profile/${user._id}`}
+                    to={`/users/${user._id}`}
                     className="list-group-item">
                     {user.username}
                 </Link>

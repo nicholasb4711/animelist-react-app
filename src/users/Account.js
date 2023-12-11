@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import '../Home/Body/Body.css';
 // import {useDispatch} from "react-redux";
 import Header from '../Search/Search'; // Assuming you have a Header component
-import {Avatar} from "@material-ui/core" // Assuming you have an Avatar component
+import { Avatar } from "@material-ui/core" // Assuming you have an Avatar component
 import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
 import { useDataLayerValue } from '../DataLayer';
 import Axios from 'axios'
@@ -21,27 +21,48 @@ function Account() {
     fetchAccount();
   }, []);
   return (
-    <div className="w-50">
+    <div className="container">
       <h1>Account</h1>
       {account && (
         <div>
           <input value={account.password}
-            onChange={(e) => setAccount({ ...account,
-              password: e.target.value })}/>
-          <input value={account.firstName}
-            onChange={(e) => setAccount({ ...account,
-              firstName: e.target.value })}/>
+            onChange={(e) => setAccount({
+              ...account,
+              password: e.target.value
+            })} />
+          <input
+            placeholder={account.map((user) => (
+              user.firstName
+            ))}
+            onChange={(e) => setAccount({
+              ...account,
+              firstName: e.target.value
+            })}
+            className="form-control"
+            type="text"
+            value={account?.firstName}
+            
+          />
+
           <input value={account.lastName}
-            onChange={(e) => setAccount({ ...account,
-              lastName: e.target.value })}/>
+            onChange={(e) => setAccount({
+              ...account,
+              lastName: e.target.value
+            })} />
           <input value={account.dob}
-            onChange={(e) => setAccount({ ...account,
-              dob: e.target.value })}/>
+            onChange={(e) => setAccount({
+              ...account,
+              dob: e.target.value
+            })} />
           <input value={account.email}
-            onChange={(e) => setAccount({ ...account,
-              email: e.target.value })}/>
-          <select onChange={(e) => setAccount({ ...account,
-              role: e.target.value })}>
+            onChange={(e) => setAccount({
+              ...account,
+              email: e.target.value
+            })} />
+          <select onChange={(e) => setAccount({
+            ...account,
+            role: e.target.value
+          })}>
             <option value="USER">User</option>
             <option value="ADMIN">Admin</option>
             <option value="FACULTY">Faculty</option>
