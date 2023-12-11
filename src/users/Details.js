@@ -72,7 +72,7 @@ function UserDetails() {
                     <button className="btn btn-primary" onClick={updateUser}>
                         Update
                     </button>
-                    <button className="btn btn-primary" onClick={updateUser}>
+                    <button className="btn btn-danger" onClick={() => deleteUser(user._id)}>
                         Delete
                     </button>
                 </div>
