@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
+import { findAnimeByTitle } from "../anime/client";
+import * as client from "../anime/client";
+import {useParams, useNavigate } from "react-router-dom";
 import "./Header.css"
 import SearchIcon from "@material-ui/icons/Search"
 import {Avatar} from "@material-ui/core"
@@ -10,14 +13,6 @@ import Axios from 'axios'
 
 function Header() {
     const [{user}, dispatch] = useDataLayerValue();
-
-    // //findUserById SEARCH
-    // const [user, setUser] = useState(null);
-    // const fetchUser = async () => {
-    //     const user = await client.findUserById(id);
-    //     setUser(user);
-    // };
-    
     const doSearch = (elem) => {
         console.log("searching")
         if(elem.key === "Enter") {
@@ -42,7 +37,6 @@ function Header() {
 
         }
     }
-
     const updateAccount = () => {
         dispatch({type: "SET_PAGE", page: 'Account'})
         // select statements to populate reviews array
@@ -53,16 +47,15 @@ function Header() {
             <div className="header_left" >
                 <SearchIcon />
                 <input
-                    placeholder="Search"
+                    placeholder="Search Anime"
                     type="search"
                     id="searchBar"
-                    onKeyDown={(e)=> doSearch(e)}
                 />
             </div>
             <div className="header_right">
                 <h4 style={{marginRight:"10px"}}>{user + " "}</h4>
                 <Link to={"/account"}>
-                <Avatar onClick={() => updateAccount()}> 
+                <Avatar> 
                 {user.charAt(0)}
                 </Avatar>
                 </Link>

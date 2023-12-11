@@ -1,158 +1,114 @@
-import { React, Component, useEffect } from 'react'
+import { React, useRef, useEffect, useState, useContext} from 'react'
 import { Link } from 'react-router-dom';
+import { signin } from '../users/client';
 import { useDataLayerValue } from '../DataLayer'
-import Axios from 'axios'
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Loading.css'
+import AuthContext from '../context/AuthProvider';
 
+const LOGIN_URL = '/auth';
 
 function Loading() {
-  const [{ user, password }, dispatch] = useDataLayerValue();
-  const top50 = () => {
-    Axios.post("http://localhost:3001/top50", {})
-      .then((response) => {
-        console.log(response)
-        dispatch({
-          type: "SET_TOP100",
-          top100: response.data
-        })
-      })
-  }
-  const register = (elem) => {
-    if (elem.key === "Enter") {
-      const password = elem.target.value;
-      const username = document.getElementById("email").value;
-      if (username !== null && password !== null) {
-        if (username.indexOf("@gmail.com") !== -1 || username.indexOf("@yahoo.com") !== -1
-          || username.indexOf("@hotmail.com") !== -1 || username.indexOf("@outlook.com") !== -1) {
-          //check three cases:
-          //case 1: email is not in database - add email and password to database
-          //case 2: email is in database and password is the correct Password in database
-          //case 3: email is in database and password in incorrect - display error message to retry password
-          dispatch({ type: "SET_USER", user: username })
-          dispatch({ type: "SET_PASSWORD", password: password })
-          Axios.post("http://localhost:3001/register", { username: username, password: password })
-            .then((response) => {
-              console.log(response)
-            })
-        }
-        else {
-          console.error("Invalid Email entered! Please enter a valid email address.")
-        }
-      }
-    }
-  }
-  const login = (elem) => {
-    if (elem.key === "Enter") {
-      Axios.post("http://localhost:3001/top50", {})
-        .then((response) => {
-          console.log(response)
-          dispatch({
-            type: "SET_TOP100",
-            top100: response.data
-          })
-        })
-      const password = elem.target.value;
-      const username = document.getElementById("emailLog").value;
-      if (username !== null && password !== null) {
-        if (username.indexOf("@gmail.com") !== -1 || username.indexOf("@yahoo.com") !== -1
-          || username.indexOf("@hotmail.com") !== -1 || username.indexOf("@outlook.com") !== -1) {
-          //check three cases:
-          //case 1: email is not in database - add email and password to database
-          //case 2: email is in database and password is the correct Password in database
-          //case 3: email is in database and password in incorrect - display error message to retry password
-          dispatch({ type: "SET_USER", user: username })
-          dispatch({ type: "SET_PASSWORD", password: password })
-          let id = ""
+  const userRef = useRef();
+  const errRef = useRef();
 
-          Axios.post("http://localhost:3001/login", { username: username, password: password })
-            .then((response) => {
-              id = response.data[0].id
-              console.log("id:", id)
-              Axios.post("http://localhost:3001/reviews", { id: id })
-                .then((response) => {
-                  console.log(response)
-                  dispatch({
-                    type: "SET_REVIEWS",
-                    reviews: response.data
-                  })
-                })
-            })
+  const [user, setUser] = useState('');
+  const [pwd, setPwd] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
 
-          Axios.post("http://localhost:3001/reviews", { id: id })
-            .then((response) => {
-              console.log(response)
-              dispatch({
-                type: "SET_REVIEWS",
-                reviews: response.data
-              })
-            })
+  useEffect(() => {
+      userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+      setErrMsg('');
+  }, [user, pwd]);
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+          const credentials = { username: user, password: pwd };
+          const response = await signin(credentials);
+          const uId = response._id;
+          if (response) {
+            console.log(response); 
+            console.log(uId);
+            setSuccess(true);
+            // Redirect or update state/context as necessary
+            // For example, you might want to store the user data in the context or local storage
+        } else {
+            // Handle case when no user data is returned
+            setErrMsg('Login Failed: User not found');
+            errRef.current.focus();
         }
-        else {
-          console.error("Invalid Email entered! Please enter a valid email address.")
-        }
+          // Redirect or update state/context as necessary
+      } catch (error) {
+          if (!error?.response) {
+              setErrMsg('No Server Response');
+          } else if (error.response?.status === 400) {
+              setErrMsg('Missing Username or Password');
+          } else if (error.response?.status === 401) {
+              setErrMsg('Unauthorized');
+          } else {
+              setErrMsg('Login Failed');
+          }
+          errRef.current.focus();
       }
-    }
-  }
-  const open = () => {
-    console.log('open')
-    dispatch({ type: "SET_USER", user: " " })
-    Axios.post("http://localhost:3001/top50", {})
-      .then((response) => {
-        console.log(response)
-        dispatch({
-          type: "SET_TOP100",
-          top100: response.data
-        })
-      })
-  }
+  };
   return (
     <div className="loading" data-bs-theme="dark">
-      <div className="login-bubble d-flex-column">
-        <form className="login-form">
-          {/* <!-- Email input --> */}
-          <div className="form-outline mb-4">
-            <input type="email" id="email" className="form-control" placeholder="Email" />
-          </div>
-
-          {/* <!-- Password input --> */}
-          <div className="form-outline mb-4">
-            <input type="password" id="password" className="form-control" placeholder="Password" onKeyDown={(e) => register(e)} />
-
-          </div>
-
-          {/* <!-- 2 column grid layout for inline styling --> */}
-          <div className="row mb-4">
-            <div className="col d-flex justify-content-center">
-              {/* <!-- Checkbox --> */}
-              <div className="form-check">
-                <input className="form-check-input login-checkbox" type="checkbox" value="" id="form2Example31" />
-                <label className="form-check-label" htmlFor="rememberme"> Remember me </label>
+            {success ? (
+                <section>
+                    <h1>You are logged in!</h1>
+                    <Link to={`/home`} className="btn">
+                    Preceed to HomePage
+                    </Link>
+                </section>
+            ) : (
+            <div className="login-bubble d-flex-column loading" data-bs-theme="dark">
+            <form className="login-form" >
+              {/* <!-- Email input --> */}
+              <div className="form-outline mb-4">
+                <input type="name" id="name" ref={userRef} className="form-control" placeholder="Username" value={user} onChange={(e) => setUser(e.target.value)}/>
               </div>
-            </div>
-
-            <div className="col">
-              {/* <!-- Simple link --> */}
-              <a href="#!" style={{ color: '#a86ed1' }}>Forgot password?</a>
-            </div>
-          </div>
-
-          {/* <!-- Submit button --> */}
-          <button type="button" className="btn btn-primary btn-md btn-block mb-4" onClick={() => open()}>Sign in</button>
-         
-
-          {/* <!-- Register buttons --> */}
-
-          <div className="text-center">
-            <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
-          </div>
-          {/* Continue without logging in */}
-          <Link to={"/home"}>
-            <button class="btn btn-primary btn-block mt-2">Continue without Logging in</button>
-          </Link>
-
-        </form>
-      </div >
+    
+              {/* <!-- Password input --> */}
+              <div className="form-outline mb-4">
+                <input type="password" id="password" className="form-control" placeholder="Password" value={pwd} onChange={(e) => setPwd(e.target.value)}/>
+    
+              </div>
+    
+              {/* <!-- 2 column grid layout for inline styling --> */}
+              <div className="row mb-4">
+                <div className="col d-flex justify-content-center">
+                  {/* <!-- Checkbox --> */}
+                  <div className="form-check">
+                    <input className="form-check-input login-checkbox" type="checkbox" value="" id="form2Example31" />
+                    <label className="form-check-label" htmlFor="rememberme"> Remember me </label>
+                  </div>
+                </div>
+    
+                <div className="col">
+                  {/* <!-- Simple link --> */}
+                  <a href="#!" style={{ color: '#a86ed1' }}>Forgot password?</a>
+                </div>
+              </div>
+    
+              {/* <!-- Submit button --> */}
+              <button type="button" className="btn btn-primary btn-md btn-block mb-4" onClick={handleSubmit} >Sign in</button>
+    
+              {/* <!-- Register buttons --> */}
+    
+              <div className="text-center">
+                <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
+              </div>
+              {/* Continue without logging in */}
+              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+            </form>
+          </div >)}
+      
     </div >
   )
 }

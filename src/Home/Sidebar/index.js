@@ -16,21 +16,18 @@ function Sidebar() {
     }
   }
   return (
-    <div className="sidebar">
+<div className="sidebar">
       <img className = "sidebar_logo"/>
       <p style = {{marginTop: 30, marginBottom: 40, display: "flex", alignItems: "center"}}><font size = "+2" face = 'verdana'>Artist Network</font></p>
       <hr />
       <br></br>
-      <div onClick={() => dispatch({type: "SET_PAGE", page: '100'})}>
+      <div>
         <SidebarOption Icon = {HomeIcon} title = "Home" />
       </div>
-      <div>
-        
-      </div>
-      <div onClick={() => dispatch({type: "SET_PAGE", page: 'Search'})}>
+      <div >
         <SidebarOption Icon = {SearchIcon} title = "Search" />
       </div>
-      <div onClick={() => updateAccount()}>
+      <div >
         <SidebarOption Icon = {AccountIcon} title = "Account" />
       </div>
       <br></br>

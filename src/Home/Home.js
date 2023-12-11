@@ -2,19 +2,18 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Header from '../Search/Search'; // Assuming you have a Header component
 import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
-import { useDataLayerValue } from '../DataLayer';
+import { findAllAnime } from '../anime/client';
 import '../Home/Body/Body.css';
 import Axios from 'axios';
 
 const Home = () => {
   const [animes, setAnimes] = useState([]);
-  const URL = "http://localhost:4000/api/anime";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await Axios.get(URL);
-        setAnimes(response.data);
+        const data = await findAllAnime();
+        setAnimes(data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }

@@ -7,11 +7,13 @@ import { DataLayer } from './DataLayer';
 import reducer, { initialState } from './reducer';
 import './index.css';
 import App from './App';
+import { AuthProvider } from './context/AuthProvider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+     
       <DataLayer initialState={initialState} reducer={reducer}>
         <App />
       </ DataLayer>

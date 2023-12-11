@@ -8,12 +8,12 @@ function SidebarOption({ title, Icon }) {
     const path = `/${title.toLowerCase()}`;
   
     return (
+    <Link to={path} style={{ textDecoration: 'none' }}>
       <div className="sidebarOption">
         {Icon && <Icon className="sidebarOption_icon" />}
-        <Link to={path}>
-          {Icon ? <h4>{title}</h4> : <p>{title}</p>}
-        </Link>
+        {Icon ? <h4>{title}</h4> : <p>{title}</p>}
       </div>
+      </Link>
     );
   }
   
