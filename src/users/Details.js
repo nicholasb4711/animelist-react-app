@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as client from "./client";
 import { useEffect, useState } from "react";
 import Header from "../Search/Search";
@@ -9,6 +9,7 @@ import Body from "../Home/Body/Body"
 function UserDetails() {
     const [user, setUser] = useState(null);
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const fetchUser = async () => {
         try {
@@ -28,7 +29,9 @@ function UserDetails() {
 
     const deleteUser = async (id) => {
         const status = await client.deleteUser(id);
+        navigate("/users");
     }
+
 
     useEffect(() => {
         fetchUser();
