@@ -1,9 +1,9 @@
 import { React, Component, useEffect } from 'react'
 import { Link } from 'react-router-dom';
-import { useDataLayerValue } from '../DataLayer';
-import Axios from 'axios';
+import { useDataLayerValue } from '../DataLayer'
+import Axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Loading.css';
+import './Loading.css'
 
 
 function Loading() {
@@ -144,18 +144,8 @@ function Loading() {
           {/* <!-- Register buttons --> */}
 
           <div className="text-center">
-            <p>Not a member? <Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
+            <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
           </div>
-<<<<<<< HEAD
-=======
-
-
-          {/* Continue without logging in */}
-          <Link to={"/home"}>
-            <button class="btn btn-primary btn-block mt-2">Continue without Logging in</button>
-          </Link>
-
->>>>>>> 26c8127839ebea8dc022486542bf852ec1c65e02
         </form>
       </div >
     </div >
