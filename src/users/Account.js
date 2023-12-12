@@ -15,7 +15,7 @@ function Account() {
   const{user} = useUser();
   const maskedPassword = user.password.replace(/./g, '•');
   return (
-    <div className="loading" style={{display:'flex'}}>
+    <div className="loading flex-fill justify-content-center" style={{display:'flex'}}>
           <div className="login-bubble d-flex-column item" data-bs-theme="dark">
               <h4 className='form-check-label'>Your Subscription</h4>
           <form className="login-form" >
