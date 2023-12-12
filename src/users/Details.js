@@ -2,9 +2,6 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as client from "./client";
 import { useEffect, useState } from "react";
-import Header from "../Search/Search";
-import Sidebar from "../Home/Sidebar";
-import Home from "../Home/Home";
 
 function UserDetails() {
     const [user, setUser] = useState(null);
@@ -37,12 +34,7 @@ function UserDetails() {
         fetchUser();
     }, [id]);
     return (
-        <div className="body">
-
-            <Header />
-
-            <h1>User Details</h1>
-
+        <div>
             {user && (
 
                 <div>
