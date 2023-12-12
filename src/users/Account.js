@@ -2,121 +2,87 @@ import React from 'react';
 import * as client from "./client";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import '../Home/Body/Body.css';
+import { Link } from 'react-router-dom';
+import './Account.css'
 // import {useDispatch} from "react-redux";
 import Header from '../Search/Search'; // Assuming you have a Header component
 import { Avatar } from "@material-ui/core" // Assuming you have an Avatar component
 import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
-import { useDataLayerValue } from '../DataLayer';
+import { useUser } from './userContext';
 import Axios from 'axios'
 
 function Account() {
-  const [account, setAccount] = useState(null);
-  const { id } = useParams();
-  const fetchAccount = async () => {
-    const account = await client.findUserById(id);
-    setAccount(account);
-  };
-  useEffect(() => {
-    fetchAccount();
-  }, []);
+  const{user} = useUser();
+  const maskedPassword = user.password.replace(/./g, '•');
   return (
-    <div className="container">
-      <h1>Account</h1>
-      {account && (
-        <div>
-          <input value={account.password}
-            onChange={(e) => setAccount({
-              ...account,
-              password: e.target.value
-            })} />
-          <input
-            placeholder={account.map((user) => (
-              user.firstName
-            ))}
-            onChange={(e) => setAccount({
-              ...account,
-              firstName: e.target.value
-            })}
-            className="form-control"
-            type="text"
-            value={account?.firstName}
-            
-          />
-
-          <input value={account.lastName}
-            onChange={(e) => setAccount({
-              ...account,
-              lastName: e.target.value
-            })} />
-          <input value={account.dob}
-            onChange={(e) => setAccount({
-              ...account,
-              dob: e.target.value
-            })} />
-          <input value={account.email}
-            onChange={(e) => setAccount({
-              ...account,
-              email: e.target.value
-            })} />
-          <select onChange={(e) => setAccount({
-            ...account,
-            role: e.target.value
-          })}>
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-            <option value="FACULTY">Faculty</option>
-            <option value="STUDENT">Student</option>
-          </select>
-        </div>
-      )}
-    </div>
+    <div className="loading" style={{display:'flex'}}>
+          <div className="login-bubble d-flex-column item" data-bs-theme="dark">
+              <h4 className='form-check-label'>Your Subscription</h4>
+          <form className="login-form" >
+              {/* <!-- Email input --> */}
+              <div className="form-outline mb-4" style={{textAlign:'left', paddingBottom:10}}>
+                <label style={{fontWeight:'bold', paddingBottom:5}}>{user.role + " Plan"}</label>
+                <div>
+                <label>{user.firstName + " " + user.lastName}</label>
+                </div>
+                <div>
+                <label>{user.role}</label>
+                </div>
+                <div>
+                </div>
+              </div>
+              <hr/>
+            </form>
+          </div >
+          <div className="login-bubble d-flex-column" data-bs-theme="dark">
+            <form className="login-form" >
+            <h4 className='form-check-label'>Your Account</h4>
+              {/* <!-- Email input --> */}
+              <div className="form-outline mb-4" style={{textAlign:'left', paddingBottom:10}}>
+                <label style={{fontWeight:'bold', paddingBottom:5}}>Personal Info</label>
+                <div>
+                <label>{user.firstName + " " + user.lastName}</label>
+                </div>
+                <div>
+                <label>{user.role}</label>
+                </div>
+                <div>
+                <Link style={{textDecoration:'none', fontWeight:'bold', float:'right'}}>
+                Update Info
+                </Link>
+                </div>
+              </div>
+              <hr/>
+    
+              {/* <!-- Password input --> */}
+              <div className="form-outline mb-4" style={{textAlign:'left', paddingBottom:10}}>
+                <label style={{fontWeight:'bold', paddingBottom:5}}>Email</label>
+                <div>
+                <label>{user.email}</label>
+                </div>
+                <div>
+                <Link style={{textDecoration:'none', fontWeight:'bold', float:'right'}}>
+                Update Email
+                </Link>
+                </div>
+              </div>
+              <hr/>
+              <div className="form-outline mb-4" style={{textAlign:'left', paddingBottom:10}}>
+                <label style={{fontWeight:'bold', paddingBottom:5}}>Password</label>
+                <div>
+                <label>{maskedPassword}</label>
+                </div>
+                <div>
+                <Link style={{textDecoration:'none', fontWeight:'bold', float:'right'}}>
+                Update password
+                </Link>
+                </div>
+              </div>
+              <hr/>
+            </form>
+          </div >
+    </div >
   );
-}
-
-
-// const Account = () => {
-//     const [{user, reviews}, dispatch] = useDataLayerValue()
-//   const setAnime = (anime) => {
-//     Axios.post("http://localhost:3001/getreviews", {id:anime.uid})
-//     .then((response) => {
-//       console.log(response)
-//       dispatch({ // update our results array to show all anime with that name
-//         type: "SET_ANIMEREVIEWS",
-//         animereviews: response.data
-//       })
-//     })
-//     dispatch({
-//       type: "SET_ANIME",
-//       anime: {id: anime.uid, name: anime.Title, synopsis: anime.Synopsis, picture: anime.img_url,
-//       score: anime.Score, ranked: anime.Ranked, genre: anime.episodes}
-//     })
-//     dispatch({type: "SET_PAGE", page: "Anime"})
-//     // Get the genre and store it in genre variable
-//   }
-//   return (
-//     <div className="body">
-//       <Header />
-//       <h1>Account</h1>
-//       <h2 style={{ marginRight: "10px" }}>{user}</h2>
-//       <Avatar onClick={() => dispatch({ type: "SET_PAGE", page: "Account" })}> 
-//         {user.charAt(0)}
-//       </Avatar>
-//       {(reviews !== undefined && reviews.length > 0) &&
-//         reviews.map((review, index) => 
-//           <div key={index}>
-//             <AnimeRow 
-//               name={review.rdescription} 
-//               score={review.rating} 
-//               ranked={review.rating}
-//               synopsis={review.rating} 
-//               picture={""}
-//             />
-//           </div>
-//         )
-//       }
-//     </div>
-//   );
-// };
+};
 
 export default Account;

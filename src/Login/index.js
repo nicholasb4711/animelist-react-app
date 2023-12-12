@@ -5,15 +5,16 @@ import { useDataLayerValue } from '../DataLayer'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Loading.css'
-import AuthContext from '../context/AuthProvider';
+import { useUser } from '../users/userContext';
 
 const LOGIN_URL = '/auth';
 
 function Loading() {
   const userRef = useRef();
   const errRef = useRef();
+  const {user, setUser} = useUser()
 
-  const [user, setUser] = useState('');
+  const [username, setUsername] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
@@ -24,18 +25,21 @@ function Loading() {
 
   useEffect(() => {
       setErrMsg('');
-  }, [user, pwd]);
+  }, [username, pwd]);
+
 
   const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-          const credentials = { username: user, password: pwd };
+          const credentials = { username: username, password: pwd };
           const response = await signin(credentials);
           const uId = response._id;
           if (response) {
             console.log(response); 
             console.log(uId);
             setSuccess(true);
+            setUser(response);
+            localStorage.setItem('user', JSON.stringify(response));
             // Redirect or update state/context as necessary
             // For example, you might want to store the user data in the context or local storage
         } else {
@@ -61,6 +65,7 @@ function Loading() {
     <div className="loading" data-bs-theme="dark">
             {success ? (
                 <section>
+                    <h1> Welcome {user.username}</h1>
                     <h1>You are logged in!</h1>
                     <Link to={`/home`} className="btn">
                     Preceed to HomePage
@@ -71,7 +76,7 @@ function Loading() {
             <form className="login-form" >
               {/* <!-- Email input --> */}
               <div className="form-outline mb-4">
-                <input type="name" id="name" ref={userRef} className="form-control" placeholder="Username" value={user} onChange={(e) => setUser(e.target.value)}/>
+                <input type="name" id="name" ref={userRef} className="form-control" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
               </div>
     
               {/* <!-- Password input --> */}

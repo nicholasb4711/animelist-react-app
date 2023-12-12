@@ -1,47 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { findAnimeByTitle } from "../anime/client";
 import * as client from "../anime/client";
-import {useParams, useNavigate } from "react-router-dom";
 import "./Header.css"
 import SearchIcon from "@material-ui/icons/Search"
 import {Avatar} from "@material-ui/core"
-import {useDataLayerValue} from '../DataLayer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useUser } from "../users/userContext";
+
 import Axios from 'axios'
-// * as client from "./client";
 
 
 function Header() {
-    const [{user}, dispatch] = useDataLayerValue();
-    const doSearch = (elem) => {
-        console.log("searching")
-        if(elem.key === "Enter") {
-            const searchTerm = elem.target.value
-            console.log(searchTerm)
-            dispatch({ // display the search page since we are searching for an anime now
-                type: "SET_PAGE",
-                page: "Search"
-            });
-            dispatch({ // display the search page since we are searching for an anime now
-                type: "SET_SEARCH",
-                search: searchTerm
-            });
-            Axios.post("http://localhost:3001/search", {search: searchTerm})
-            .then((response) => {
-              console.log(response.data)
-              dispatch({
-                type: "SET_RESULTS",
-                results: response.data
-              })
-            })
-
-        }
-    }
-    const updateAccount = () => {
-        dispatch({type: "SET_PAGE", page: 'Account'})
-        // select statements to populate reviews array
-
-      }
+    const {user, setUser} = useUser();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        // Clear user data from state
+        setUser(null);
+        localStorage.removeItem('user');
+        navigate("/")
+      };
     return (
         <div className="header">
             <div className="header_left" >
@@ -53,17 +30,15 @@ function Header() {
                 />
             </div>
             <div className="header_right">
-                <h4 style={{marginRight:"10px"}}>{user + " "}</h4>
-                <Link to={"/account"}>
+                <h4 style={{marginRight:"10px"}}>{user.firstName + " "}</h4>
+                <Link to={"/account"} style={{textDecoration: false}}>
                 <Avatar> 
-                {user.charAt(0)}
+                {user.lastName.charAt(0)}
                 </Avatar>
                 </Link>
-                <Link to={"/"}>
-                <h5 style={{paddingLeft: "10px"}}>
+                <div onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer' }}>
                     Log out
-                </h5>
-                </Link>
+                </div>
             </div>
         </div>
     )

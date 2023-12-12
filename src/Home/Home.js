@@ -4,10 +4,13 @@ import Header from '../Search/Search'; // Assuming you have a Header component
 import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
 import { findAllAnime } from '../anime/client';
 import '../Home/Body/Body.css';
+import { useUser } from '../users/userContext';
 import Axios from 'axios';
 
 const Home = () => {
   const [animes, setAnimes] = useState([]);
+  const {user} = useUser;
+
 
   useEffect(() => {
     const fetchData = async () => {

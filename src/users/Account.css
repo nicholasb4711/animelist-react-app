@@ -1,9 +1,4 @@
-.loading {
-    display: grid;
-    place-items: center;
-    height: 100vh;
-    background-color: #0d1117;
-}
+
 
 .login-bubble {
     background-color: #484f58;
@@ -38,3 +33,7 @@
     background-color: #a86ed1;
     border-color: #a86ed1;
 }
+  
+  .item {
+    margin-right: 30px; /* Optional spacing between items */
+  }

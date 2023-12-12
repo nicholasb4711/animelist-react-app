@@ -11,12 +11,14 @@ import Signin from "./users/signin.js"
 import UserList from "./users/UserList.js"
 import UserDetails from './users/Details.js';
 import Account from "./users/Account.js";
+import { UserProvider } from './users/userContext';
 
 
 function App() {
   const [{ user }, dispatch] = useDataLayerValue();
   return (
     <div className="App">
+      <UserProvider>
       <Router>
         <Routes>
           <Route path="/signin" element={<Signin />} />
@@ -31,6 +33,7 @@ function App() {
           {/* Add more routes as needed */}
         </Routes>
       </Router>
+      </UserProvider>
     </div>
   );
 }
