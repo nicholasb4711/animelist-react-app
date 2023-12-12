@@ -4,7 +4,7 @@ import * as client from "./client";
 import { useEffect, useState } from "react";
 import Header from "../Search/Search";
 import Sidebar from "../Home/Sidebar";
-import Body from "../Home/Body/Body"
+
 
 function UserDetails() {
     const [user, setUser] = useState(null);

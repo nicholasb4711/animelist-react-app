@@ -11,6 +11,7 @@ import Signin from "./users/signin.js"
 import UserList from "./users/UserList.js"
 import UserDetails from './users/Details.js';
 import Account from "./users/Account.js";
+import Editprofile from './users/Editprofile';
 import { UserProvider } from './users/userContext';
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/users" element={<UserList />} />
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/users/:username" element={<Account />} />
+          <Route path="/editprofile" element={<Editprofile />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
