@@ -4,13 +4,13 @@ import Account from './Account';
 function Accountcomp() {
     return (
         <div style={{ backgroundColor: "black", display: "flex", height: "100vh" }}>
-            <div style={{ width: "200px" }}> {/* Sidebar width */}
+            <div>
                 <Sidebar />
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <div> {/* Max width for inner content */}
-                    <Account/>
-                </div>
+
+                <Account />
+
             </div>
         </div>
     );
