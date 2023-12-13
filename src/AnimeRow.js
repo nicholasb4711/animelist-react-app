@@ -9,7 +9,7 @@ function AnimeRow({ name, synopsis, picture, score, ranked, genre }) {
     const [showMore, setShowMore] = useState(false);
 
     return (
-        <div className="animeRow">
+        <div className="anime-bubble">
             <div className="animeRow_info">
             {picture && <img className="animeRow_album" src={picture} alt={name} />}
                 <h1>{name}</h1>

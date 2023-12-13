@@ -9,14 +9,15 @@ import Axios from 'axios';
 
 const Home = () => {
   const [animes, setAnimes] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const {user} = useUser;
-
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await findAllAnime();
-        setAnimes(data);
+        setAnimes(data); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -27,13 +28,13 @@ const Home = () => {
 
   return (
     <div className="body">
-      <Header />
+      <Header onSearchResult={setSearchResults}/>
       <h1>Top 100 Anime</h1>
       <div className="body_info">
       </div>
-      <div className="body_songs">
+      <div className="body_songs" style={{justifyContent:'center'}}>
         {animes.map((anime) => (
-          <div key={anime.uid} >
+          <div key={anime.uid} style={{paddingBottom:20}} >
             <AnimeRow 
               name={anime.title} 
               synopsis={anime.synopsis} 

@@ -6,6 +6,23 @@
     color: white;
 }
 
+.anime-bubble {
+    background-color: #484f58;
+    margin-left: 100px;
+    margin-right: 30px;
+    display: flex;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 1rem;
+    border-style: solid;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 3rem;
+    border-color: darkgrey;
+    justify-content: center;
+}
+
 .animeRow:hover {
     cursor: pointer;
     background-color: black;

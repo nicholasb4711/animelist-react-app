@@ -10,23 +10,38 @@ import { useUser } from "../users/userContext";
 import Axios from 'axios'
 
 
-function Header() {
+function Header ({ onSearchResult }) {
     const {user, setUser} = useUser();
     const navigate = useNavigate();
+    const [title, setTitle] = useState('');
     const handleLogout = () => {
         // Clear user data from state
         setUser(null);
         localStorage.removeItem('user');
         navigate("/")
       };
+      const handleSearch = async () => {
+        try {
+          const result = await findAnimeByTitle(title);
+          console.log(result);
+          onSearchResult(result); // Pass the search results to the parent component
+          navigate("/search")
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          // Handle the error appropriately
+        }
+      };
     return (
         <div className="header">
             <div className="header_left" >
+                <div onClick={handleSearch}>
                 <SearchIcon />
+                </div>
                 <input
                     placeholder="Search Anime"
                     type="search"
                     id="searchBar"
+                    onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
             <div className="header_right">
@@ -36,7 +51,7 @@ function Header() {
                 {user.lastName.charAt(0)}
                 </Avatar>
                 </Link>
-                <div onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer' }}>
+                <div onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer'}}>
                     Log out
                 </div>
             </div>
