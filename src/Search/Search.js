@@ -14,6 +14,7 @@ function Header ({ onSearchResult }) {
     const {user, setUser} = useUser();
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
+    const [isGuest, setGuest] = useState(user.role != "GUEST");
     const handleLogout = () => {
         // Clear user data from state
         setUser(null);
@@ -48,17 +49,24 @@ function Header ({ onSearchResult }) {
                     onChange={(e) => setTitle(e.target.value)}
                 />
             </div>
-            <div className="header_right">
-                <h4 style={{marginRight:"10px"}}>{user.firstName + " "}</h4>
-                <Link to={"/account"} style={{textDecoration: false}}>
-                <Avatar> 
-                {user.lastName.charAt(0)}
-                </Avatar>
-                </Link>
-                <div onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer'}}>
-                    Log out
-                </div>
-            </div>
+            {isGuest ? (
+        <div className="header_right">
+        <h4 style={{marginRight:"10px"}}>{user.firstName + " "}</h4>
+        <Link to={"/account"} style={{textDecoration: false}}>
+        <Avatar> 
+        {user.lastName.charAt(0)}
+        </Avatar>
+        </Link>
+        <div onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer'}}>
+            Log out
+        </div>
+    </div>
+      ) : (
+        <div className="header_right" onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer'}}>
+            Log in
+        </div>
+      )}
+            
         </div>
     )
 }

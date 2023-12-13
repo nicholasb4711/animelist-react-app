@@ -62,6 +62,42 @@ function Loading() {
           errRef.current.focus();
       }
   };
+  const handleGuest = async (e) => {
+    e.preventDefault();
+    try{
+      const credentials = { username: "GUEST", password: "GUEST" };
+      const response = await signin(credentials);
+      const uId = response._id;
+      if (response) {
+        console.log(response); 
+        console.log(uId);
+        setSuccess(true);
+        setUser(response);
+        localStorage.removeItem('user');
+        localStorage.setItem('user', JSON.stringify(response));
+        // Redirect or update state/context as necessary
+        // For example, you might want to store the user data in the context or local storage
+    } else {
+        // Handle case when no user data is returned
+        setErrMsg('Login Failed: User not found');
+        errRef.current.focus();
+    }
+      // Redirect or update state/context as necessary
+  } catch (error) {
+      if (!error?.response) {
+          setErrMsg('No Server Response');
+      } else if (error.response?.status === 400) {
+          setErrMsg('Missing Username or Password');
+      } else if (error.response?.status === 401) {
+          setErrMsg('Unauthorized');
+      } else {
+          setErrMsg('Login Failed');
+      }
+      errRef.current.focus();
+  }
+  
+  }
+
   return (
     <div className="loading" data-bs-theme="dark">
             {success ? (
@@ -104,12 +140,17 @@ function Loading() {
     
               {/* <!-- Submit button --> */}
               <button type="button" className="btn btn-primary btn-md btn-block mb-4" onClick={handleSubmit} >Sign in</button>
-    
+              <div style={{paddingBottom:10}}>
+              <button className="btn btn-primary"onClick={handleGuest}>
+                Sign in as Guest
+              </button>
+              </div >
               {/* <!-- Register buttons --> */}
     
               <div className="text-center">
                 <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
               </div>
+              
               {/* Continue without logging in */}
               <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
             </form>

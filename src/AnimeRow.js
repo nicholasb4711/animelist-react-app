@@ -4,10 +4,13 @@ import { useState, useEffect } from 'react';
 import './AnimeRow.css';
 import { useAnime } from './AnimeProvider';
 import { findAnimeById } from './anime/client';
+import { useUser } from './users/userContext';
 
 function AnimeRow({ name, synopsis, picture, score, ranked, id }) {
+    const {user} = useUser();
     const {anime, setAnime} = useAnime();
     const [showMore, setShowMore] = useState(false);
+    const [isGuest, setGuest] = useState(user.role != "GUEST");
     const navigate = useNavigate();
 
     const handleAnime = async (e) => {
@@ -29,11 +32,20 @@ function AnimeRow({ name, synopsis, picture, score, ranked, id }) {
                 {score && <p>Score: {score}</p>}
                 {synopsis && <p>{showMore ? synopsis : `${synopsis.substring(0, 250)}`}
                 <button className="btn" onClick={() => setShowMore(!showMore)} >{showMore ? "Show less" : "Show more"}</button></p>}
-                <button className='btn btn-primary' onClick={handleAnime}>
-              <Link>
-              View 
-              </Link>
-            </button>
+                {isGuest ? (
+        <button className='btn btn-primary' onClick={handleAnime}>
+        <Link>
+        View 
+        </Link>
+      </button>
+      ) : (
+        <button className='btn btn-primary'>
+        <Link to={"/"}>
+        Login to View
+        </Link>
+      </button>
+      )}
+                
             </div>
         </div>
     );
