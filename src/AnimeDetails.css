@@ -1,0 +1,51 @@
+.animeDetail {
+    margin-left: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.detail-bubble {
+    background-color: #484f58;
+    margin-left: 100px;
+    margin-right: 30px;
+    display: flex;
+    width: 80%;
+    padding: 2rem;
+    border-radius: 1rem;
+    border-style: solid;
+    border-top-width: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 3rem;
+    border-color: whitesmoke;
+    justify-content: center;
+}
+
+.animeDetail:hover {
+    cursor: pointer;
+    background-color: black;
+    opacity: 0.8;
+}
+
+.animeDetail_info {
+    margin-left: 20px;
+}
+
+.animeDetail_info > h1 {
+    font-size: 16px;
+}
+
+.animeDetail_info > p {
+    font-size: 14px;
+    margin-top: 3px;
+    color: gray;
+}
+
+.animeDetail_album {
+    width: 200px; /* Increased size */
+    height: 200px; /* Increased size */
+    object-fit: cover;
+    margin-bottom: 20px;
+}

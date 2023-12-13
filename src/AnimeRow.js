@@ -1,13 +1,25 @@
 import React from 'react';
-import { useState } from 'react';
+import { Link, Navigate, useNavigate} from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './AnimeRow.css';
-import { useDataLayerValue } from './DataLayer';
+import { useAnime } from './AnimeProvider';
+import { findAnimeById } from './anime/client';
 
-
-function AnimeRow({ name, synopsis, picture, score, ranked, genre }) {
-    const [{}, dispatch] = useDataLayerValue();
+function AnimeRow({ name, synopsis, picture, score, ranked, id }) {
+    const {anime, setAnime} = useAnime();
     const [showMore, setShowMore] = useState(false);
+    const navigate = useNavigate();
 
+    const handleAnime = async (e) => {
+        try {
+            const data = await findAnimeById(id);
+            setAnime(data);
+            console.log(anime); 
+            navigate('/anime-detail')
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+    }
     return (
         <div className="anime-bubble">
             <div className="animeRow_info">
@@ -17,6 +29,11 @@ function AnimeRow({ name, synopsis, picture, score, ranked, genre }) {
                 {score && <p>Score: {score}</p>}
                 {synopsis && <p>{showMore ? synopsis : `${synopsis.substring(0, 250)}`}
                 <button className="btn" onClick={() => setShowMore(!showMore)} >{showMore ? "Show less" : "Show more"}</button></p>}
+                <button className='btn btn-primary' onClick={handleAnime}>
+              <Link>
+              View 
+              </Link>
+            </button>
             </div>
         </div>
     );

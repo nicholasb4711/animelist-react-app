@@ -12,6 +12,8 @@ import UserList from "./users/UserList.js"
 import UserDetails from './users/Details.js';
 import Account from "./users/Account.js";
 import Editprofile from './users/Editprofile';
+import AnimeDetail from './AnimeDetail';
+import { AnimeProvider } from './AnimeProvider';
 import { UserProvider } from './users/userContext';
 
 
@@ -20,7 +22,8 @@ function App() {
   return (
     <div className="App">
       <UserProvider>
-      <Router>
+        <AnimeProvider>
+          <Router>
         <Routes>
           <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
@@ -32,9 +35,11 @@ function App() {
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/users/:username" element={<Account />} />
           <Route path="/editprofile" element={<Editprofile />} />
+          <Route path="/anime-detail" element={<AnimeDetail />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
+        </AnimeProvider>
       </UserProvider>
     </div>
   );

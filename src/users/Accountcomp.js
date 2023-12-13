@@ -8,9 +8,7 @@ function Accountcomp() {
                 <Sidebar />
             </div>
             <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-
                 <Account />
-
             </div>
         </div>
     );

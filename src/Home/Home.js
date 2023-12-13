@@ -11,7 +11,6 @@ const Home = () => {
   const [animes, setAnimes] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const {user} = useUser;
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,6 +40,7 @@ const Home = () => {
               picture={anime.img_url} 
               score={anime.score} 
               ranked={anime.ranked} 
+              id = {anime.uid}
             />
           </div>
         ))}

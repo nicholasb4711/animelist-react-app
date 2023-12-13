@@ -39,6 +39,7 @@ function Loading() {
             console.log(uId);
             setSuccess(true);
             setUser(response);
+            localStorage.removeItem('user');
             localStorage.setItem('user', JSON.stringify(response));
             // Redirect or update state/context as necessary
             // For example, you might want to store the user data in the context or local storage
