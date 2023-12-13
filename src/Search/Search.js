@@ -21,6 +21,10 @@ function Header ({ onSearchResult }) {
         navigate("/")
       };
       const handleSearch = async () => {
+        if (!title.trim()) {
+          alert("Please enter a search term.");
+          return;
+        }
         try {
           const result = await findAnimeByTitle(title);
           console.log(result);
