@@ -17,6 +17,7 @@ const Home = () => {
       try {
         const data = await findAllAnime();
         setAnimes(data); 
+        console.log(animes);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
