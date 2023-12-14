@@ -2,7 +2,7 @@
     display: grid;
     place-items: center;
     height: 100vh;
-    background-color: #0d1117;
+    background-color: #121212;
 }
 
 .login-bubble {
@@ -15,7 +15,7 @@
     border-left-width: 0;
     border-right-width: 0;
     border-bottom-width: 3rem;
-    border-color: #4b0082;
+    
     justify-content: center; 
 }
 
@@ -23,11 +23,20 @@
     width: 22rem;
 }
 
+.form-control {
+    background-color: #181818;
+
+}
+
 .btn-primary {
-    background-color: #4b0082;
-    --bs-btn-hover-bg: #;
-    --bs-btn-hover-border-color: #6f03bd;
-    --bs-btn-border-color: #4b0082;
+    background-color: #bb86fc;
+    --bs-btn-hover-bg: #d0b1f7;
+    --bs-btn-hover-color: #121212;
+    --bs-btn-active-bg: #;
+    --bs-btn-active-border-color: #bb86fc;
+    --bs-btn-active-border-radius: 1rem;
+    color: #121212;
+    border: none;
 }
 
 .login-checkbox {

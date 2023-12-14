@@ -18,7 +18,9 @@ function Sidebar() {
   return (
 <div className="sidebar">
       <img className = "sidebar_logo"/>
-      <p style = {{marginTop: 30, marginBottom: 40, display: "flex", alignItems: "center"}}><font size = "+2" face = 'verdana'>Artist Network</font></p>
+      <h4 style = {{marginTop: 30, marginBottom: 40, display: "flex", alignItems: "center", 
+      fontSize: '1.5rem', fontWeight: 500, color: '#B694F6'}}>
+        Anime List</h4>
       <hr />
       <br></br>
       <div>

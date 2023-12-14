@@ -1,13 +1,14 @@
 .sidebar {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 100vh;
     flex: 0.2;
     color: white;
-    background-color: #040404;
+    background-color: #1f1f1f;
     width: 275px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 500px;
+    box-shadow:  0 1rem 0 #000000;
 }
 
 .sidebar > hr {

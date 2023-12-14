@@ -32,14 +32,13 @@ function UserDetails() {
         navigate("/users");
     }
 
-
     useEffect(() => {
         fetchUser();
     }, [id]);
+
     return (
         <div>
             {user && (
-
                 <div>
                     <p>Username:
                         <input
