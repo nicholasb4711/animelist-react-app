@@ -88,44 +88,26 @@ function Reviews() {
       </div>
       <div className='reviews-section container'>
         {/* map through reviews and display them */}
-        {reviews.map((review) => (
-          <div style={{marginBottom: '4rem'}}>
-            <div className='d-flex d-flex-row flex-fill'>
-              <h1 className='review-text'>{review.Autor} said...</h1>
+        {reviews.map((review) => {
+          return (
+            <div key={review._id} style={{ marginBottom: '4rem' }}>
+              <div className='d-flex d-flex-row flex-fill'>
+                <h1 className='review-text'>{review.Autor} said...</h1>
+              </div>
+              <div className='d-flex d-flex-row flex-fill review-card' style={{ marginLeft: '1rem' }}>
+                <h2 className='review-text'>{review.reviewText}</h2>
+              </div>
+              <div className='d-flex d-flex-row flex-fill review-card align-items-center' style={{ marginLeft: '5rem' }}>
+                <IoIosStar className='review-text' />
+                <h2 className='review-text'>
+                  {review.rating} / 10
+                </h2>
+              </div>
             </div>
-            <div className='d-flex d-flex-row flex-fill review-card'
-             style={{marginLeft: '1rem'}} key={review._id}>
-              <h2 className='review-text'>{review.reviewText}</h2>
-            </div>
-            <div className='d-flex d-flex-row flex-fill review-card align-items-center' 
-            style={{marginLeft: '5rem'}} key={review._id}>
-              <IoIosStar className='review-text'/>
-              <h2 className='review-text'>
-                 {review.rating} / 10
-              </h2>
-
-
-            </div>
-          </div>
-          // <div>
-          //   <h1>{review.Autor} said...</h1>
-          // <div className='review-card' key={review._id}>
-          //   <div className='review-card-header'>
-          //     {/* display review card header */}
-          //   </div>
-
-          //   {/* display review */}
-          //   <h1>{review.Autor}</h1>
-          //   <p>{review.reviewText}</p>
-          //   <div>
-          //     {/* display review details */}
-          //     <h3>{review.Autor}</h3>
-          //     <p>{review.reviewText}</p>
-          //   </div>
-          // </div>
-          // </div>
-        ))}
+          );
+        })}
       </div>
+
     </div>
   )
 }
