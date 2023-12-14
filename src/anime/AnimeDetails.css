@@ -84,3 +84,19 @@
     border: none;
     box-shadow: inset 0 0 .15rem 0 #000000;
 }
+
+.reviews-section {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    padding-bottom: 5rem;
+    color: #181818;
+    align-items: center;
+}
+.review-card {
+    background-color: #181818;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow:  0 0 .5rem 0 #00000071;
+}
