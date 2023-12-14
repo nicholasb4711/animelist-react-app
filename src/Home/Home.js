@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Header from '../Search/Search'; // Assuming you have a Header component
-import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
+import AnimeRow from '../anime/AnimeRow'; // Assuming you have an AnimeRow component
 import { findAllAnime } from '../anime/client';
 import '../Home/Body/Body.css';
 import { useUser } from '../users/userContext';

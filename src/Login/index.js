@@ -111,14 +111,16 @@ function Loading() {
             ) : (
             <div className="login-bubble d-flex-column" data-bs-theme="dark">
             <form className="login-form" >
-              {/* <!-- Email input --> */}
+              {/* <!-- Username input --> */}
               <div className="form-outline mb-4">
-                <input type="name" id="name" ref={userRef} className="form-control" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                <input type="name" id="name" ref={userRef} className="form-control" 
+                placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)}/>
               </div>
     
               {/* <!-- Password input --> */}
               <div className="form-outline mb-4">
-                <input type="password" id="password" className="form-control" placeholder="Password" value={pwd} onChange={(e) => setPwd(e.target.value)}/>
+                <input type="password" id="password" className="form-control" 
+                placeholder="Password" value={pwd} onChange={(e) => setPwd(e.target.value)}/>
     
               </div>
     
@@ -127,7 +129,8 @@ function Loading() {
                 <div className="col d-flex justify-content-center">
                   {/* <!-- Checkbox --> */}
                   <div className="form-check">
-                    <input className="form-check-input login-checkbox" type="checkbox" value="" id="form2Example31" />
+                    <input className="form-check-input login-checkbox" 
+                    type="checkbox" value="" id="form2Example31" />
                     <label className="form-check-label" htmlFor="rememberme"> Remember me </label>
                   </div>
                 </div>
@@ -139,16 +142,20 @@ function Loading() {
               </div>
     
               {/* <!-- Submit button --> */}
-              <button type="button" className="btn btn-primary btn-md btn-block mb-4" onClick={handleSubmit} >Sign in</button>
+              <div className="d-flex-col justify-content-center">
+              <button type="button" className="btn btn-primary btn-md btn-block mb-4" 
+              onClick={handleSubmit} >Sign in</button>
               <div style={{paddingBottom:10}}>
               <button className="btn btn-primary"onClick={handleGuest}>
                 Sign in as Guest
               </button>
+              </div>
+              
               </div >
               {/* <!-- Register buttons --> */}
     
               <div className="text-center">
-                <p>Not a member?<Link to={"/register"}><a href="#!" style={{ color: '#a86ed1' }}>Register</a></Link></p>
+                <p>Not a member?  <Link to={"/register"} style={{ color: '#a86ed1' }}>Register</Link></p>
               </div>
               
               {/* Continue without logging in */}

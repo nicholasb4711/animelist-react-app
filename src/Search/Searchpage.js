@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 import '../Home/Body/Body.css';
-import AnimeRow from '../AnimeRow'; // Assuming you have an AnimeRow component
+import AnimeRow from '../anime/AnimeRow'; // Assuming you have an AnimeRow component
 import Header from './Search'; // Adjust the import path as needed
 import { useDataLayerValue } from '../DataLayer';
 import Axios from 'axios'

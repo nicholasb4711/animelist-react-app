@@ -4,10 +4,12 @@ import Account from './Account';
 function Accountcomp() {
     return (
         <div style={{ backgroundColor: "black", display: "flex", height: "100vh" }}>
-            <div>
+            <div style={{backgroundColor: '#1f1f1f'}}>
                 <Sidebar />
             </div>
-            <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+
+
+            <div className={"flex-fill"} style={{ justifyContent: "center", alignItems: "center" }}>
                 <Account />
             </div>
         </div>
