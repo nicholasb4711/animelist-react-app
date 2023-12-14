@@ -28,3 +28,8 @@ export const updateAnime = async (id, anime) => {
     return response.data;
 }
 
+export const findBySearchTerm = async (searchTerm) => {
+    const response = await axios.get(`${USERS_API}/search/${searchTerm}`);
+    return response.data;
+}
+

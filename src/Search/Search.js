@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { findAnimeByTitle } from "../anime/client";
+import { findAnimeByTitle, findBySearchTerm } from "../anime/client";
 import * as client from "../anime/client";
 import "./Header.css"
 import SearchIcon from "@material-ui/icons/Search"
@@ -13,7 +13,7 @@ import Axios from 'axios'
 function Header ({ onSearchResult }) {
     const {user, setUser} = useUser();
     const navigate = useNavigate();
-    const [title, setTitle] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const [isGuest, setGuest] = useState(user.role != "GUEST");
     const handleLogout = () => {
         // Clear user data from state
@@ -26,12 +26,12 @@ function Header ({ onSearchResult }) {
         navigate("/")
       };
       const handleSearch = async () => {
-        if (!title.trim()) {
+        if (!searchTerm.trim()) {
           alert("Please enter a search term.");
           return;
         }
         try {
-          const result = await findAnimeByTitle(title);
+          const result = await findBySearchTerm(searchTerm);
           console.log(result);
           onSearchResult(result); // Pass the search results to the parent component
           navigate("/search")
@@ -50,7 +50,7 @@ function Header ({ onSearchResult }) {
                     placeholder="Search Anime"
                     type="search"
                     id="searchBar"
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
             {isGuest ? (
