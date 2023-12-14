@@ -1,4 +1,5 @@
 import * as client from './client';
+import { findUserById } from '../users/client';
 import { useState, useEffect } from 'react';
 import { useAnime } from '../anime/AnimeProvider';
 import { useUser } from '../users/userContext';
@@ -6,11 +7,11 @@ import { useUser } from '../users/userContext';
 function Reviews() {
     // get reviews from server based on the currently selected anime
     const [reviews, setReviews] = useState([]);
+    const [userr, setuserr] = useState([]);
     const { anime } = useAnime();
     const { user } = useUser();
     const [credentials, setCredentials] = useState({
-        animeId: anime._id, userId: user._id, reviewText: "", rating : null
-
+        animeId: anime._id, userId: user._id, reviewText: "", rating : null, Autor: user.username
       });
     const [error, setError] = useState(null);
     const [isAdmin] = useState(user.role === "ADMIN");
@@ -39,6 +40,11 @@ function Reviews() {
           }
 
     }
+    const getUser = async (id) => {
+        const userrev = await findUserById(id)
+        setuserr(userrev);
+    }
+
 
     return (
 
@@ -89,7 +95,7 @@ function Reviews() {
                         {/* display review */}
                         <div>
                             {/* display review details */}
-                            <h3>{review.rating}</h3>
+                            <h3>{review.Autor}</h3>
                             <p>{review.reviewText}</p>
                         </div>
                     </div>
