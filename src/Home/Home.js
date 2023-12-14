@@ -28,7 +28,7 @@ const Home = () => {
   return (
     <div className="body">
       <Header onSearchResult={setSearchResults}/>
-      <h1>Top 100 Anime</h1>
+      <h1>Anime List</h1>
       <div className="body_info">
       </div>
       <div className="body_songs" style={{justifyContent:'center'}}>

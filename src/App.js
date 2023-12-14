@@ -7,7 +7,6 @@ import Searchcomp from './Search/Searchcomp';
 import Homecomp from './Home/Homecomp.js';
 import Accountcomp from './users/Accountcomp.js';
 import Register from './users/Register';
-import Signin from "./users/signin.js"
 import UserList from "./users/UserList.js"
 import UserDetails from './users/Details.js';
 import Account from "./users/Account.js";
@@ -25,7 +24,6 @@ function App() {
         <AnimeProvider>
           <Router>
         <Routes>
-          <Route path="/signin" element={<Signin />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Loading />} />
           <Route path="/Search" element={<Searchcomp />} />

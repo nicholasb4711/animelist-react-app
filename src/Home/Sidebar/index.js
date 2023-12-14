@@ -3,18 +3,9 @@ import SidebarOption from './Sidebaroptions/index';
 import HomeIcon from "@material-ui/icons/Home"
 import SearchIcon from "@material-ui/icons/Search"
 import AccountIcon from "@material-ui/icons/AccountBox"
-import { useDataLayerValue } from '../../DataLayer';
 import {Link} from "react-router-dom";
 
 function Sidebar() {
-
-  const [{user}, dispatch] = useDataLayerValue();
-  const updateAccount = () => {
-    dispatch({type: "SET_PAGE", page: 'Account'})
-    if(user !== " "){
-      
-    }
-  }
   return (
 <div className="sidebar">
       <img className = "sidebar_logo"/>

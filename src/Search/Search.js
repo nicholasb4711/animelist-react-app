@@ -21,6 +21,10 @@ function Header ({ onSearchResult }) {
         localStorage.removeItem('user');
         navigate("/")
       };
+      const handleLogin = () => {
+        // Clear user data from state
+        navigate("/")
+      };
       const handleSearch = async () => {
         if (!title.trim()) {
           alert("Please enter a search term.");
@@ -62,7 +66,7 @@ function Header ({ onSearchResult }) {
         </div>
     </div>
       ) : (
-        <div className="header_right" onClick={handleLogout} style={{ paddingLeft: "10px", cursor: 'pointer'}}>
+        <div className="header_right" onClick={handleLogin} style={{paddingLeft: "10px", cursor: 'pointer'}}>
             Log in
         </div>
       )}
