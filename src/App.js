@@ -26,22 +26,22 @@ function App() {
       <UserProvider>
         <AnimeProvider>
           <Router>
-        <Routes>
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Loading />} />
-          <Route path="/Search" element={<Searchcomp />} />
-          <Route path="/home" element={<Homecomp />} />
-          <Route path="/account" element={<Accountcomp />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/users/:id" element={<UserDetails />} />
-          <Route path="/users/:username" element={<Account />} />
-          <Route path="/editprofile" element={<Editprofile />} />
-          <Route path="/anime-detail" element={<AnimeDetailsComp />} />
-          <Route path="/anime-detail/edit" element={<AnimeDetailEdit />} />
-          {/* Add more routes as needed */}
-        </Routes>
-      </Router>
+            <Routes>
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/" element={<Loading />} />
+              <Route path="/Search" element={<Searchcomp />} />
+              <Route path="/home" element={<Homecomp />} />
+              <Route path="/account" element={<Accountcomp />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/users/:id" element={<UserDetails />} />
+              <Route path="/users/:username" element={<Account />} />
+              <Route path="/editprofile" element={<Editprofile />} />
+              <Route path="/anime-detail" element={<AnimeDetailsComp />} />
+              <Route path="/anime-detail/edit" element={<AnimeDetailEdit />} />
+              {/* Add more routes as needed */}
+            </Routes>
+          </Router>
         </AnimeProvider>
       </UserProvider>
     </div>
