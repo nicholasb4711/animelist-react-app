@@ -9,7 +9,7 @@ import { FaCheck } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 import * as client from './client'
 import './AnimeDetails.css'
-import Reviews from './Reviews';
+import Reviews from '../Reviews/Reviews';
 
 function AnimeDetailEdit() {
     const { anime, setAnime } = useAnime();

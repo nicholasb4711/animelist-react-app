@@ -7,7 +7,7 @@ import { useUser } from '../users/userContext';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { findAnimeById } from './client';
 import { useNavigate } from 'react-router-dom';
-import Reviews from './Reviews';
+import Reviews from '../Reviews/Reviews';
 
 const AnimeDetail = () => {
   const [showMore, setShowMore] = useState(false);
@@ -41,8 +41,9 @@ const AnimeDetail = () => {
           }}>{anime.synopsis}</p>}
           <div className='d-flex justify-content-evenly'>
             <div>
-
-              <Link to={'/home'} style={{ textDecoration: 'none' }} className="btn btn-secondary">Back to home</Link>
+              <Link to={'/home'} style={{ textDecoration: 'none' }} className="btn btn-secondary">
+                Back to home
+              </Link>
             </div>
             {isAdmin && (
               <div>

@@ -22,6 +22,7 @@ function AnimeRow({ name, synopsis, picture, score, ranked, id }) {
       setAnime(data);
       console.log(anime);
       navigate('/anime-detail')
+      localStorage.setItem('anime', JSON.stringify(data));
     } catch (error) {
       console.error('Error fetching data:', error);
     }
