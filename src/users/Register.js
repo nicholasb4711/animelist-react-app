@@ -8,7 +8,7 @@ import './Account.css'
 
 function Register() {
   const [credentials, setCredentials] = useState({
-    username: "", password: "", firstName: "", lastName: "", email: "", dob: ""
+    username: "", password: "", firstName: "", lastName: "", email: "", dob: "", role: ""
   });
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -94,6 +94,31 @@ function Register() {
                 onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
               />
             </div>
+            <div>
+      <h3>Select Role</h3>
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="ADMIN"
+            checked={credentials.role == "ADMIN"}
+            onChange={(e) => setCredentials({ ...credentials, role: e.target.value })}
+          />
+          Admin
+        </label>
+      </div>
+      <div>
+        <label>
+          <input
+            type="radio"
+            value="USER"
+            checked={credentials.role == "USER"}
+            onChange={(e) => setCredentials({ ...credentials, role: e.target.value })}
+          />
+          User
+        </label>
+      </div>
+    </div>
             <div>
             </div>
           </div>

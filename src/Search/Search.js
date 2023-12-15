@@ -15,6 +15,7 @@ function Header ({ onSearchResult }) {
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [isGuest, setGuest] = useState(user.role != "GUEST");
+    const [isAdmin, setAdmin] = useState(user.role == "ADMIN");
     const handleLogout = () => {
         // Clear user data from state
         setUser(null);
@@ -23,7 +24,7 @@ function Header ({ onSearchResult }) {
       };
       const handleLogin = () => {
         // Clear user data from state
-        navigate("/")
+        navigate("/login")
       };
       const handleSearch = async () => {
         if (!searchTerm.trim()) {
@@ -69,7 +70,16 @@ function Header ({ onSearchResult }) {
         <div className="header_right" onClick={handleLogin} style={{paddingLeft: "10px", cursor: 'pointer'}}>
             Log in
         </div>
+        
       )}
+      {isAdmin && (
+      <div>
+        <button className='btn btn-secondary'>
+          <Link to={'/users'} style={{textDecoration:'none', color:'white'}}>
+          Manage Users
+          </Link>
+          </button>
+        </div>)}
             
         </div>
     )

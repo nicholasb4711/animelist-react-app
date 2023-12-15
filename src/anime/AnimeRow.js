@@ -52,14 +52,7 @@ function AnimeRow({ name, synopsis, picture, score, ranked, id }) {
         marginTop: '2rem', color: '#808080'}}>{showMore ? synopsis : `${synopsis.substring(0, 250)}`}
           <button className="btn showmore" onClick={() => setShowMore(!showMore)} >
             {showMore ? "Show less" : "Show more"}</button></p>}
-        {isGuest && (
-
-          <Link to={"/"} className='btn btn-primary'>
-            Login to View
-          </Link>
-
-        )}
-        {isUser && (
+        {isUser || isGuest && (
           <Link className='btn btn-primary' onClick={handleAnime}>
             View
           </Link>

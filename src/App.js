@@ -1,6 +1,6 @@
 import './App.css';
 import Loading from './Login/index'
-import { useDataLayerValue } from './DataLayer'
+import { useUser } from './users/userContext';
 import { HashRouter } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Searchcomp from './Search/Searchcomp';
@@ -19,17 +19,17 @@ import AnimeDetailsComp from './anime/AnimeDetailsComp.js';
 
 
 function App() {
-  const [{ user }, dispatch] = useDataLayerValue();
   return (
     <div className="App">
       <UserProvider>
         <AnimeProvider>
           <Router>
             <Routes>
+            <Route path="*" element={<Homecomp />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/" element={<Loading />} />
+              <Route path="/login" element={<Loading />} />
               <Route path="/Search" element={<Searchcomp />} />
-              <Route path="/home" element={<Homecomp />} />
+              <Route path="/" element={<Homecomp />} />
               <Route path="/account" element={<Accountcomp />} />
               <Route path="/users" element={<UserList />} />
               <Route path="/users/:id" element={<UserDetails />} />

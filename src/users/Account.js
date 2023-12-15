@@ -100,7 +100,7 @@ function Account() {
                   Register
                 </Link>
                 /
-                <Link to={"/"}>
+                <Link to={"/login"}>
                   Sign in
                 </Link>
               </div>

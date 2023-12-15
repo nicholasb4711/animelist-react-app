@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAnime } from '../anime/AnimeProvider';
 import { useUser } from '../users/userContext';
 import { IoIosStar } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 function Reviews() {
   // get reviews from server based on the currently selected anime
@@ -14,8 +15,10 @@ function Reviews() {
   const [credentials, setCredentials] = useState({
     animeId: anime._id, userId: user._id, reviewText: "", rating: null, Autor: user.username
   });
+  const [isGuest, setGuest] = useState(user.role === "GUEST");
+  const [isUser, setUser] = useState(user.role === "USER");
+  const [isAdmin, setAdmin] = useState(user.role === "ADMIN");
   const [error, setError] = useState(null);
-  const [isAdmin] = useState(user.role === "ADMIN");
 
   // get reviews from server based on the currently selected anime
   useEffect(() => {
@@ -39,53 +42,59 @@ function Reviews() {
     } catch (err) {
       setError("fail");
     }
-
+}
+    const deleteRev = async (id) => {
+        await client.deleteReview(id)
   }
-  const getUser = async (id) => {
-    const userrev = await findUserById(id)
-    setuserr(userrev);
-  }
-
 
   return (
 
     <div className='review'>
       <div style={{ paddingTop: 30 }}>
+      
         <label className="label" type="label" htmlFor="textAreaExample">
           <h2>Reviews</h2>
         </label>
-
       </div>
-
-      <div className="write-review container" style={{ marginTop: 30 }}>
-        <h4 style={{ textAlign: 'start', paddingLeft: '1rem' }}>Write a review!</h4>
-        <textarea className="form-control" id="textAreaExample" rows="5" onChange={(e) => setCredentials({ ...credentials, reviewText: e.target.value })} >
-        </textarea>
-        <div>
-          <label>Rate This</label>
-          <div>
-            {[...Array(10)].map((_, index) => {
-              const ratingValue = index + 1;
-              return (
-                <label key={ratingValue} style={{ marginRight: '10px' }}>
-                  {ratingValue}
-                  <input
-                    type="checkbox"
-                    value={ratingValue}
-                    className='form-check-input'
-                    onChange={(e) => setCredentials({ ...credentials, rating: e.target.value })}
-                  />
-                </label>
-              );
-            })}
+      {isGuest &&(
+        <button className='btn btn-secondary'>
+            <Link to={"/login"} style={{textDecoration:'none', color: 'white'}}>
+            Login to Post
+            </Link>
+        </button>
+            
+        )}
+        {isUser || isAdmin &&(
+            <div className="write-review container" style={{ marginTop: 30 }}>
+            <h4 style={{ textAlign: 'start', paddingLeft: '1rem' }}>Write a review!</h4>
+            <textarea className="form-control" id="textAreaExample" rows="5" onChange={(e) => setCredentials({ ...credentials, reviewText: e.target.value })} >
+            </textarea>
             <div>
-              <button className="btn btn-on-primary" onClick={postReview}>
-                Post
-              </button>
+              <label>Rate This</label>
+              <div>
+                {[...Array(10)].map((_, index) => {
+                  const ratingValue = index + 1;
+                  return (
+                    <label key={ratingValue} style={{ marginRight: '10px' }}>
+                      {ratingValue}
+                      <input
+                        type="checkbox"
+                        value={ratingValue}
+                        className='form-check-input'
+                        onChange={(e) => setCredentials({ ...credentials, rating: e.target.value })}
+                      />
+                    </label>
+                  );
+                })}
+                <div>
+                  <button className="btn btn-on-primary" onClick={postReview}>
+                    Post
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )}
       <div className='reviews-section container'>
         {/* map through reviews and display them */}
         {reviews.map((review) => {
@@ -102,6 +111,9 @@ function Reviews() {
                 <h2 className='review-text'>
                   {review.rating} / 10
                 </h2>
+                <button className='btn btn-danger'  >
+                    Delete
+                </button>
               </div>
             </div>
           );
